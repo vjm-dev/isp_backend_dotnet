@@ -1,0 +1,6 @@
+@ISP_Backend_Dotnet_HostAddress = http://localhost:5000
+
+GET {{ISP_Backend_Dotnet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
