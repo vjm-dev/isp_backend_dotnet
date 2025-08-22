@@ -6,6 +6,7 @@
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
         public int PlanId { get; set; }
         public Plan Plan { get; set; } = null!;
         public DateTime LastUpdated { get; set; }

@@ -91,26 +91,36 @@ Content-Type: application/json
 Login response: 
 ```json
 {
-    "id": "user_guest",
-    "name": "Guest User",
-    "email": "guest@isp.com",
-    "phone": "+1234567890",
-    "planName": "Internet 100 Mbps",
-    "monthlyPayment": 29.99,
-    "lastUpdated": "2024-01-15 10:30:00",
-    "data_usage": {
-        "start_date": "2024-01-01",
-        "end_date": "2024-02-05",
-        "used": 150.0,
-        "limit": 500.0,
-        "daily_usage": [
-            {
-                "date": "2024-01-15",
-                "download": 5.2,
-                "upload": 1.1
-            }
-        ]
-    }
+  "id": "user_guest",
+  "name": "Guest User",
+  "email": "guest@isp.com",
+  "phone": "+1234567890",
+  "planName": "Internet 100 Mbps",
+  "monthlyPayment": 29.99,
+  "data_usage": {
+    "start_date": "2025-07-22T00:00:00",
+    "end_date": "2025-08-26T00:00:00",
+    "used": 179.47,
+    "limit": 500,
+    "daily_usage": [
+      {
+        "date": "2025-08-20T00:00:00",
+        "download": 5.2,
+        "upload": 1.1
+      },
+      {
+        "date": "2025-08-21T00:00:00",
+        "download": 18.05,
+        "upload": 2.9
+      },
+      {
+        "date": "2025-08-22T00:00:00",
+        "download": 1.5,
+        "upload": 0.1
+      }
+    ]
+  },
+  "lastUpdated": "2025-08-22T20:47:17"
 }
 ```
 ### User data
@@ -143,27 +153,33 @@ GET /plans
 Response:
 ```json
 [
-    {
-        "id": "1",
-        "name": "Internet 100 Mbps",
-        "speed": "100 Mbps",
-        "data_limit": 500,
-        "monthly_payment": 29.99
-    },
-    {
-        "id": "2",
-        "name": "Internet 300 Mbps",
-        "speed": "300 Mbps",
-        "data_limit": 1000,
-        "monthly_payment": 49.99
-    },
-    {
-        "id": "3",
-        "name": "Internet 1 Gbps",
-        "speed": "1 Gbps",
-        "data_limit": 2000,
-        "monthly_payment": 79.99
-    }
+  {
+    "id": 1,
+    "name": "Internet 100 Mbps",
+    "speed": "100 Mbps",
+    "monthly_payment": 29.99,
+    "data_limit": 500,
+    "created_at": "2025-08-21T16:12:28",
+    "updated_at": "2025-08-21T16:12:28"
+  },
+  {
+    "id": 2,
+    "name": "Internet 300 Mbps",
+    "speed": "300 Mbps",
+    "monthly_payment": 49.99,
+    "data_limit": 1000,
+    "created_at": "2025-08-21T16:12:28",
+    "updated_at": "2025-08-21T16:12:28"
+  },
+  {
+    "id": 3,
+    "name": "Internet 1 Gbps",
+    "speed": "1 Gbps",
+    "monthly_payment": 79.99,
+    "data_limit": 2000,
+    "created_at": "2025-08-21T16:12:28",
+    "updated_at": "2025-08-21T16:12:28"
+  }
 ]
 ```
 #### API Calls

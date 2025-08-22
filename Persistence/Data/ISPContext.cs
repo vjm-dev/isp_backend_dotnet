@@ -37,6 +37,7 @@ namespace ISP_Backend_Dotnet.Persistence.Data
                 entity.Property(u => u.Name).HasColumnName("name");
                 entity.Property(u => u.Email).HasColumnName("email");
                 entity.Property(u => u.Phone).HasColumnName("phone");
+                entity.Property(u => u.Password).HasColumnName("password");
                 entity.Property(u => u.PlanId).HasColumnName("plan_id");
                 entity.Property(u => u.LastUpdated).HasColumnName("last_updated");
             });

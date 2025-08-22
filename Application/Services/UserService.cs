@@ -17,10 +17,11 @@ namespace ISP_Backend_Dotnet.Application.Services
         {
             var user = await _userRepository.GetByEmailAsync(email);
             if (user == null)
-                throw new Exception("User not found");
-
-            if (string.IsNullOrEmpty(password))
-                throw new Exception("Invalid password");
+                throw new Exception("Invalid email or password");
+            
+            // Verify password using BCrypt
+            if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
+                throw new Exception("Invalid email or password");
 
             return UserMapping.UserToUserResponse(user);
         }

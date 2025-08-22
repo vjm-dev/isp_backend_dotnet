@@ -20,16 +20,16 @@ namespace ISP_Backend_Dotnet.API.Controllers
         {
             try
             {
-                var user = await _userService.LoginAsync(request.Email!, request.Password!);
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                    return BadRequest(new { message = "Email and password are required" });
+
+                var user = await _userService.LoginAsync(request.Email, request.Password);
                 return Ok(user);
             }
             catch (Exception ex)
             {
-                if (ex.Message == "User not found")
+                if (ex.Message == "Invalid email or password")
                     return Unauthorized(new { message = "Invalid email or password" });
-
-                if (ex.Message == "Invalid password")
-                    return Unauthorized(new { message = "Invalid password" });
 
                 return StatusCode(500, new { message = "Internal server error" });
             }
