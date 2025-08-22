@@ -3,11 +3,17 @@ using ISP_Backend_Dotnet.Domain.Interfaces;
 using ISP_Backend_Dotnet.Persistence.Data;
 using ISP_Backend_Dotnet.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower;
+        options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
+    });
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();

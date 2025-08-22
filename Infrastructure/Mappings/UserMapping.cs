@@ -11,33 +11,25 @@ namespace ISP_Backend_Dotnet.Infrastructure.Mappings
         {
             if (user == null) return null!;
 
-            DataUsageResponse dataUsageResponse;
-            if (user.DataUsage == null)
-            {
-                dataUsageResponse = new DataUsageResponse
-                {
-                    StartDate = DateTime.UtcNow.AddDays(-30),
-                    EndDate = DateTime.UtcNow.AddDays(5),
-                    Used = 0,
-                    Limit = user.Plan?.DataLimit ?? 0,
-                    DailyUsage = new List<DataConsumptionResponse>()
-                };
-            }
-            else
-            {
-                dataUsageResponse = DataUsageToDataUsageResponse(user.DataUsage);
-            }
-
             return new UserResponse
             {
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Phone = user.Phone,
-                PlanName = user.Plan?.Name ?? string.Empty,
+                PlanName = user.Plan?.Name ?? "",
                 MonthlyPayment = user.Plan?.MonthlyPayment ?? 0,
                 LastUpdated = user.LastUpdated,
-                DataUsage = dataUsageResponse
+                DataUsage = user.DataUsage != null ?
+                    DataUsageToDataUsageResponse(user.DataUsage) :
+                    new DataUsageResponse
+                    {
+                        StartDate = DateTime.UtcNow,
+                        EndDate = DateTime.UtcNow.AddMonths(1),
+                        Used = 0,
+                        Limit = user.Plan?.DataLimit ?? 0,
+                        DailyUsage = new List<DataConsumptionResponse>()
+                    }
             };
         }
 
